@@ -17,13 +17,26 @@
         border: 8px solid #212121;
         background-color:212121 ;
         font-family: Helvetica, Arial, Geneva, Sans-serif;
+        animation: slide 3s;
     }
+    @keyframes slide{
+        from{
+            width: 1500px;
+            opacity: 0;
+        }
+        to{
+            width: 500px;
+            opacity: 1;
+        }
+    }
+
+
     .PortfolioLinkSet{
         font-family: monospace;
         line-height: 5px;
         position: absolute;
         margin: 0;
-        top: 200px; 
+        top: 250px; 
         left: 50%; 
         -ms-transform: translate(-50%,-50%);
         transform: translate(-50%,-50%);  
@@ -34,11 +47,10 @@
 </style>
 
 <html>
-    <div class="card">
-        <p style="font-size: 30px; text-align: center;"><b> Ty Straub </b></p>
-
-
-
+    <div id="card" class="card" onload="slide();">
+        <h1 style="font-size: 30px; text-align: center;"><b> Straub.Zip </b></h1>
+        <hr>
+        <h3 style="color: orange;"><center>Ty Straub</center></h3>
         <div style="display: flex; justify-content: space-between; font-size: 13px;">
             <p>IT Technician</p>
             <p>Student</p>
@@ -47,8 +59,9 @@
     </div>
     <div class="PortfolioLinkSet">
         <center>
-        <h1><a href="KeyboardTest.html" style="color: white;">Keyboard Diagnostic</a></h1>
-        <h1><a href="Resume.html" style="color: white;">Resume</a></h1>
+        <h1>Portfolio Links</h1>
+        <h2><a href="KeyboardTest.html" style="color: white;">Keyboard Test</a></h2>
+        <h2><a href="Resume.html" style="color: white;">HTML Resume</a></h2>
       </center>
     </div>
     
@@ -57,3 +70,8 @@
 
 
 </html>
+<script>
+
+
+
+</script>
