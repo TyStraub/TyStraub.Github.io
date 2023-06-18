@@ -78,7 +78,7 @@
         document.getElementById("gameWrapper").appendChild(div) //Adding a child of gameWrapper elements
         var left = Math.random()*(WinWidth-120); //"Rough" math for boundaries
         var top = Math.random()*(WinHeight-120);// ^^^
-
+        div.style.opacity=0;
         //Now for the style choices
         div.style.width="70px"; //Creating bigger hitboxes may result in out of bounds generation.
         div.style.height="70px";
@@ -93,6 +93,7 @@
         
         div.style.top=top+"px"; //These lines determine the final placement
         div.style.left=left+"px";//^^
+        div.style.opacity=1;
         var trigger=false;
         setTimeout(() => {
             if (trigger==false) {
@@ -127,6 +128,7 @@
         document.getElementById("gameWrapper").appendChild(div)
         var left = Math.random()*(WinWidth-120); 
         var top = Math.random()*(WinHeight-120);
+        div.style.opacity=0;
         div.style.width="70px"; 
         div.style.height="70px";
         div.style.background = "MediumSeaGreen";
@@ -136,6 +138,7 @@
         console.log(WinHeight+","+WinWidth);
         div.style.top=top+"px"; 
         div.style.left=left+"px";
+        div.style.opacity=1;
         var trigger=false;
         setTimeout(() => {
             if (trigger==false) {
@@ -168,6 +171,7 @@
         document.getElementById("gameWrapper").appendChild(div)
         var left = Math.random()*(WinWidth-120); 
         var top = Math.random()*(WinHeight-120);
+        div.style.opacity=0;
         div.style.width="70px"; 
         div.style.height="70px";
         div.style.background = "Crimson";
@@ -178,6 +182,7 @@
     
         div.style.top=top+"px"; 
         div.style.left=left+"px";
+        div.style.opacity=1;
         var trigger=false;
         setTimeout(() => {
             if (trigger==false) {
