@@ -1,6 +1,7 @@
 <style>
-        body {
-      background-color:101010 ;
+    body {
+        background-image: linear-gradient(rgba(10,10,10),rgb(46, 46, 46));
+        font-family: Helvetica, Arial, Geneva, Sans-serif;
       color:White;
     }   
     #Main {
@@ -16,10 +17,12 @@
         font-family: Helvetica, Arial, Geneva, Sans-serif;
     }
     .key{
-        border: 2px solid white;
-        background-color: grey;
+        border: 2px solid rgb(161, 161, 161);
+        background-color: rgb(80, 80, 80);
         width: 50px;
         height: 50px;
+
+        text-align: center;
     }
     .keyspacer{
         opacity: 0;
@@ -40,7 +43,7 @@
 <html>
     <P><a href="index.html" style="color: white; font-size: 20px;">Back</a></P>
     <div id="Main">
-        <H1>Keyboard Test <input type="text" style="height: 40px; width: 450px; background-color: black; color: orange; font-family: 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"></H1>
+        <H1>Keyboard Test</H1>
 
         <div id="FKeys" style="display: flex; justify-content: space-between;">
             <div id="Escape" class="key"></div>
@@ -148,10 +151,9 @@ var key;
 
 
 
-
 document.onkeydown = function (e){
-    //console.log(e);
-
+    console.log(e);
+    //
     key=e.code;
     document.getElementById(e.code).style.backgroundColor="coral";
     //console.log(e.code);
@@ -160,7 +162,7 @@ document.onkeydown = function (e){
         console.log("Timeout called")
        document.getElementById(e.code).style.animation=""
     }, 300);
- 
+    return false;
 }
 
 
