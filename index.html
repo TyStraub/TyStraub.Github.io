@@ -17,15 +17,59 @@
       background-image: linear-gradient(rgba(10,10,10),rgb(46, 46, 46));
       color:White;
     }   
+
+    .PortfolioLinkButton {
+        margin: auto;
+        background-color:313131;
+        border-width: 2px;
+        border-style: inset;
+        border-color: white;
+        border-radius: 10px;
+        font-family: Helvetica, Arial, Geneva, Sans-serif;
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+        width: 70%;
+        line-height:40px;
+        margin-top: 10px;
+    }
+
+
+
+
+
+    .PortfolioLinkSet div:hover{
+        animation: push .3s;
+        background-color: #212121;
+        border: gray;
+        border-width: 2px;
+        border-style: inset;
+    }
+
+    @keyframes push{
+        from{
+            background-color:313131;
+
+        }
+        to{
+            background-color: #212121;
+
+        }
+
+    }
+
+
+
     .card {
+        min-width: 300px;
         line-height: 5px;
-        position: absolute;
+        position: relative;
         margin: 0;
-        top: 100px; 
+        top: 10%; 
         left: 50%; 
         -ms-transform: translate(-50%,-50%);
         transform: translate(-50%,-50%);
-        width: 500px;
+        width: 20%;
         border: 8px solid #212121;
         background-color:212121 ;
         font-family: Helvetica, Arial, Geneva, Sans-serif;
@@ -33,22 +77,24 @@
     }
     @keyframes slide{
         from{
-            width: 1500px;
+            width: 100%;
             opacity: 0;
         }
         to{
-            width: 500px;
+            width: 20%;
             opacity: 1;
         }
     }
 
 
     .PortfolioLinkSet{
+        min-width: 350px;
+        width: 30%;
         font-family: monospace;
-        line-height: 5px;
-        position: absolute;
+        line-height: 15px;
+        position: relative;
         margin: 0;
-        top: 230px; 
+        top: 15%; 
         left: 50%; 
         -ms-transform: translate(-50%,-50%);
         transform: translate(-50%,-50%);  
@@ -70,14 +116,13 @@
             <p>Software Dev</p>
         </div>
     </div>
+
+
     <div class="PortfolioLinkSet">
-        <center>
-        <h1>Portfolio Links</h1>
-        
-        <h2><a href="StraubResume.pdf" >Resume</a></h2>
-        <h2><a href="KeyboardTest.html" >Keyboard Test</a></h2>
-        <h2><a href="Reflex.html" >Reflex</a></h2>
-      </center>
+        <h1 style="text-align: center;">My Projects</h1>
+        <div class="PortfolioLinkButton"><a href="StraubResume.pdf" >Resume</a></div>
+        <div class="PortfolioLinkButton"><a href="Reflex.html" >Reflex</a></div>
+        <div class="PortfolioLinkButton"><a href="KeyboardTest.html" >Keyboard Test</a></div>
     </div>
     
 
@@ -85,8 +130,7 @@
 
 
 </html>
+
 <script>
-
-
 
 </script>
