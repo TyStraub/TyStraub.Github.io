@@ -1,0 +1,70 @@
+<style>
+
+    body {
+        background-image: linear-gradient(rgba(10,10,10),rgb(46, 46, 46));
+        font-family: Helvetica, Arial, Geneva, Sans-serif;
+      color:White;
+    }   
+    #Main {
+        line-height: 5px;
+        position: absolute;
+        margin: 0;
+        left: 50%; 
+        -ms-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        border: 8px solid #212121;
+        background-color:212121 ;
+        font-family: Helvetica, Arial, Geneva, Sans-serif;
+    }
+    .key{
+        border: 2px solid rgb(0, 0, 0);
+        border-radius: 5px;
+        background-color: rgb(80, 80, 80);
+        width: 50px;
+        height: 50px;
+        text-align: center;
+    }
+    .keyspacer{
+        opacity: 0;
+        width: 50px;
+        height: 50px;
+    }
+    @keyframes Colorfade{
+        from{
+            background-color: orange;
+        }
+        to{
+            background-color: coral;
+        }
+    }
+</style>
+
+
+<html>
+    <P><a href="index.html" style="color: white; font-size: 20px;">Main</Main></a></P>
+    <center>    
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeKXaPzAb_PAjciwRaBo4d4D8BaLa_8YFm7rmqByG4Cq2YeKQ/viewform?embedded=true" width="640" height="4828" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </center>
+
+ 
+
+</html>
+
+<script>
+
+var key;
+document.onkeydown = function (e){
+    //console.log(e);
+    //
+    key=e.code;
+    document.getElementById(e.code).style.backgroundColor="coral";
+    //console.log(e.code);
+    document.getElementById(e.code).style.animation="Colorfade 0.2s";
+    setTimeout(() => {
+    //console.log("Timeout called")
+       document.getElementById(e.code).style.animation=""
+    }, 300);
+    return false;
+}
+
+</script>
