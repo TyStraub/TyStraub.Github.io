@@ -25,22 +25,3 @@
  
 
 </html>
-
-<script>
-
-var key;
-document.onkeydown = function (e){
-    //console.log(e);
-    //
-    key=e.code;
-    document.getElementById(e.code).style.backgroundColor="coral";
-    //console.log(e.code);
-    document.getElementById(e.code).style.animation="Colorfade 0.2s";
-    setTimeout(() => {
-    //console.log("Timeout called")
-       document.getElementById(e.code).style.animation=""
-    }, 300);
-    return false;
-}
-
-</script>
