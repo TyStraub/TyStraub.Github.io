@@ -1,0 +1,167 @@
+<style>
+
+    body {
+        background-image: linear-gradient(rgba(10,10,10),rgb(46, 46, 46));
+        font-family: Helvetica, Arial, Geneva, Sans-serif;
+      color:White;
+    }   
+    #Main {
+        line-height: 5px;
+        position: absolute;
+        margin: 0;
+        top: 50%; 
+        left: 50%; 
+        -ms-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        border: 8px solid #212121;
+        background-color:212121 ;
+        font-family: Helvetica, Arial, Geneva, Sans-serif;
+    }
+    .key{
+        border: 2px solid rgb(0, 0, 0);
+        border-radius: 5px;
+        background-color: rgb(80, 80, 80);
+        width: 50px;
+        height: 50px;
+        text-align: center;
+    }
+    .keyspacer{
+        opacity: 0;
+        width: 50px;
+        height: 50px;
+    }
+    @keyframes Colorfade{
+        from{
+            background-color: orange;
+        }
+        to{
+            background-color: coral;
+        }
+    }
+</style>
+
+
+<html>
+    <P><a href="index.html" style="color: white; font-size: 20px;">Back</a></P>
+    <div id="Main">
+        <H1>Keyboard Test</H1>
+
+        <div id="FKeys" style="display: flex; justify-content: space-between;">
+            <div id="Escape" class="key"></div>
+            <div class="keyspacer"></div>
+            <div id="F1" class="key"></div>
+            <div id="F2" class="key"></div>
+            <div id="F3" class="key"></div>
+            <div id="F4" class="key"></div>
+            <div class="keyspacer"></div>
+            <div id="F5" class="key"></div>
+            <div id="F6" class="key"></div>
+            <div id="F7" class="key"></div>
+            <div id="F8" class="key"></div>
+            <div class="keyspacer"></div>
+            <div id="F9" class="key"></div>
+            <div id="F10" class="key"></div>
+            <div id="F11" class="key"></div>
+            <div id="F12" class="key"></div>
+        </div>
+
+        <div id="NumKeys" style="display: flex; justify-content: space-between;">
+            <div id="Backquote" class="key"></div>
+            <div id="Digit1" class="key"></div>
+            <div id="Digit2" class="key"></div>
+            <div id="Digit3" class="key"></div> 
+            <div id="Digit4" class="key"></div>
+            <div id="Digit5" class="key"></div>
+            <div id="Digit6" class="key"></div> 
+            <div id="Digit7" class="key"></div>
+            <div id="Digit8" class="key"></div>
+            <div id="Digit9" class="key"></div> 
+            <div id="Digit0" class="key"></div>
+            <div id="Minus" class="key"></div>
+            <div id="Equal" class="key"></div> 
+            <div id="Backspace" class="key" style="width: 100px;"></div>
+
+        </div>
+
+        <div id="TopRow" style="display: flex; justify-content: space-between;">
+            <div id="Tab" class="key" style="width: 70px;"></div>
+            <div id="KeyQ" class="key"></div>
+            <div id="KeyW" class="key"></div>
+            <div id="KeyE" class="key"></div> 
+            <div id="KeyR" class="key"></div>
+            <div id="KeyT" class="key"></div>
+            <div id="KeyY" class="key"></div> 
+            <div id="KeyU" class="key"></div>
+            <div id="KeyI" class="key"></div>
+            <div id="KeyO" class="key"></div> 
+            <div id="KeyP" class="key"></div>
+            <div id="BracketLeft" class="key"></div>
+            <div id="BracketRight" class="key"></div> 
+            <div id="Backslash" class="key" style="width: 70px;"></div>
+        </div>
+
+        <div id="MidRow" style="display: flex; justify-content: space-between;">
+            <div id="CapsLock" class="key" style="width: 80px;"></div>
+            <div id="KeyA" class="key"></div>
+            <div id="KeyS" class="key"></div>
+            <div id="KeyD" class="key"></div> 
+            <div id="KeyF" class="key"></div>
+            <div id="KeyG" class="key"></div>
+            <div id="KeyH" class="key"></div> 
+            <div id="KeyJ" class="key"></div>
+            <div id="KeyK" class="key"></div>
+            <div id="KeyL" class="key"></div> 
+            <div id="Semicolon" class="key"></div>
+            <div id="Quote" class="key"></div>
+            <div id="Enter" class="key" style="width: 115px;"></div> 
+
+        </div>
+
+        <div id="BottomRow" style="display: flex; justify-content: space-between;">
+            <div id="ShiftLeft" class="key" style="width: 120px;"></div>
+            <div id="KeyZ" class="key"></div>
+            <div id="KeyX" class="key"></div>
+            <div id="KeyC" class="key"></div> 
+            <div id="KeyV" class="key"></div>
+            <div id="KeyB" class="key"></div>
+            <div id="KeyN" class="key"></div> 
+            <div id="KeyM" class="key"></div>
+            <div id="Comma" class="key"></div>
+            <div id="Period" class="key"></div> 
+            <div id="Slash" class="key"></div>
+            <div id="ShiftRight" class="key" style="width: 140px;"></div>
+
+
+        </div>
+        <div id="SpaceRow" style="display: flex; justify-content: space-between;">
+            <div id="ControlLeft" class="key" style="width: 70px;"></div>
+            <div id="MetaLeft" class="key"></div>
+            <div id="AltLeft" class="key"></div>
+            <div id="Space" class="key" style="width: 470px;"></div> 
+            <div id="AltRight" class="key"></div>
+            <div id="ContextMenu" class="key"></div>
+            <div id="ControlRight" class="key"></div>
+
+        </div>
+    </div>
+
+</html>
+
+<script>
+
+var key;
+document.onkeydown = function (e){
+    //console.log(e);
+    //
+    key=e.code;
+    document.getElementById(e.code).style.backgroundColor="coral";
+    //console.log(e.code);
+    document.getElementById(e.code).style.animation="Colorfade 0.2s";
+    setTimeout(() => {
+    //console.log("Timeout called")
+       document.getElementById(e.code).style.animation=""
+    }, 300);
+    return false;
+}
+
+</script>

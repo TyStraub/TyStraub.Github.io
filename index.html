@@ -1,0 +1,137 @@
+
+
+<style>
+    a:link{
+        color: white;
+    }
+    a:visited{
+        color: white;
+    }
+    a:hover{
+        color: coral;
+    }
+
+
+
+    body {
+      background-image: linear-gradient(rgba(10,10,10),rgb(46, 46, 46));
+      color:White;
+      font-family: Helvetica, Arial, Geneva, Sans-serif;
+    }   
+
+    .PortfolioLinkButton {
+        margin: auto;
+        background-color:rgb(46,46,46);
+        border-width: 2px;
+        border-style: inset;
+        border-color: rgb(0, 0, 0);
+        border-radius: 10px;
+        font-family: Helvetica, Arial, Geneva, Sans-serif;
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+        width: 70%;
+        line-height:40px;
+        margin-top: 10px;
+    }
+
+
+
+
+
+    .PortfolioLinkSet div:hover{
+        animation: push .3s;
+        background-color: #212121;
+        border: gray;
+        border-width: 2px;
+        border-style: inset;
+    }
+
+    @keyframes push{
+        from{
+            background-color:313131;
+
+        }
+        to{
+            background-color: #212121;
+
+        }
+
+    }
+
+
+
+    .card {
+        border: 2px solid rgb(0, 0, 0);
+        border-radius: 10px;
+        min-width: 300px;
+        line-height: 5px;
+        position: relative;
+        margin: 0;
+        top: 10%; 
+        left: 50%; 
+        -ms-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+        width: 20%;
+        border: 8px solid #212121;
+        background-color:212121 ;
+        
+        animation: slide 3s;
+    }
+    @keyframes slide{
+        from{
+            width: 100%;
+            opacity: 0;
+        }
+        to{
+            width: 20%;
+            opacity: 1;
+        }
+    }
+
+
+    .PortfolioLinkSet{
+        min-width: 350px;
+        width: 30%;
+        font-family: monospace;
+        line-height: 15px;
+        position: relative;
+        margin: 0;
+        top: 15%; 
+        left: 50%; 
+        -ms-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);  
+    }
+
+
+
+
+</style>
+
+<html>
+    <title>Straub.zip</title>
+    <div id="card" class="card" onload="slide();">
+        <h1 style="font-size: 30px; text-align: center;"><b> Straub.Zip </b></h1>
+        <hr>
+        <h3 style="color: coral;"><center>Ty Straub</center></h3>
+        <div style="display: flex; justify-content:center;">
+        </div>
+    </div>
+
+
+    <div class="PortfolioLinkSet">
+        <h1 style="text-align: center;">My Projects</h1>
+        <a href="TyStraubResume.pdf" ><div class="PortfolioLinkButton">Resume</div></a>
+        <a href="TSPaint.html" ><div class="PortfolioLinkButton">TS Paint</div></a>
+        <a href="KeyboardTest.html" ><div class="PortfolioLinkButton">Keyboard Test</div></a>
+    </div>
+    
+
+
+
+
+</html>
+
+<script>
+
+</script>

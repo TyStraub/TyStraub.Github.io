@@ -1,0 +1,94 @@
+<style>
+    a:link{
+        color: white;
+    }
+    a:visited{
+        color: white;
+    }
+    a:hover{
+        color: coral;
+    }
+    body {
+        min-width: 1280px;
+        font-family: Helvetica, Arial, Geneva, Sans-serif;
+        background-image: linear-gradient(rgb(51, 51, 51),rgb(0, 0, 0));
+        color:White;
+    }   
+    #CanvasMain{
+        background-color: rgb(255, 255, 255);
+    }
+    #ControlPanel{
+        border: 5px groove gray;
+        margin: 0;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: rgb(56, 56, 56);
+        width: 1280px;
+        height: 165px;
+        display: flex; justify-content: space-evenly;
+    }
+    #main{
+        line-height: 0;
+    }
+
+    .button{
+        width: 100px;
+        height: 100px;
+        background-color: black;
+    }
+
+    #preview{
+        background-color: black;
+        height: 10px;
+        width: 10px;
+        border-radius: 100%;
+        top: 50%;
+    }
+    #sizeSelector{
+        width: 100px;
+    }
+    #Resolution{
+        bottom: 0;
+    }
+
+</style>
+
+<html>
+    <title>TS Paint</title>
+    <center>
+        <canvas id="CanvasMain" width="1280px" height="720px"></canvas>
+    </center>
+    <div ></div>
+    <div id="ControlPanel">
+
+        <div>
+            <center>
+                <h3>Color Selector</h3>
+                <input type="color" id="ColorSelector" name="SelectedColor" value="#ff0000" class="button">
+            </center>
+        </div>
+
+        <div style="width:100px; height: 100px;">
+            <center>
+                <h3>Preview</h3>
+                <div id="preview"></div>
+            
+
+          </center>
+        </div>
+
+        <div>
+                <center><h3>size Selector</h3>
+                    <input type="range" min="1" max="50" value="5" id="sizeSelector">
+                    <hr style="opacity: 0;">
+                    <input type="button" id="reset" type="reset" value="Clean" style="width: 100px; height: 25px;">
+                </center>
+        </div>
+    </div>
+    <center>
+        <h3 style="color: coral; line-height: 3px;">TS Paint</h3>
+    </center>
+
+</html>
+
+<script type="text/javascript" src="JS/TSPaintScript.js"></script>
