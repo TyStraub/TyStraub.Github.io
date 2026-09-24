@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Polyatomic ion drill</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#E8EEEB;--grid:rgba(40,80,90,.09);--paper:#F9FBFA;--ink:#1C2A33;--muted:#56666D;--line:#1C2A33;--accent:#2B5F7A;--ok:#2B7548;--okbg:#DCEFE2;--bad:#A93A2D;--badbg:#F7E1DC;--field:#FFFFFF}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11191D;--grid:rgba(160,200,210,.06);--paper:#1A242A;--ink:#E3ECEA;--muted:#9BAEB3;--line:#C7D6D4;--accent:#86BCD4;--ok:#72C893;--okbg:#1B3225;--bad:#EF9084;--badbg:#3A211D;--field:#12191D}}
+:root[data-theme="dark"]{--bg:#11191D;--grid:rgba(160,200,210,.06);--paper:#1A242A;--ink:#E3ECEA;--muted:#9BAEB3;--line:#C7D6D4;--accent:#86BCD4;--ok:#72C893;--okbg:#1B3225;--bad:#EF9084;--badbg:#3A211D;--field:#12191D}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100%;background-color:var(--bg);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px;color:var(--ink);font-family:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.5}
+main{max-width:620px;margin:0 auto;padding:32px 20px 56px}
+h1{font-size:2.1rem;line-height:1.1;margin:0 0 6px;letter-spacing:-.01em}
+h2{font-size:1.15rem;margin:28px 0 10px}
+p{margin:0 0 12px}
+.lede{color:var(--muted);max-width:52ch}
+[hidden]{display:none!important}
+fieldset{border:0;padding:0;margin:0}
+.seg{display:flex;border:2px solid var(--line);background:var(--paper);flex-wrap:wrap}
+.seg label{flex:1 1 140px;text-align:center;padding:10px 8px;cursor:pointer;font-weight:700;border-right:2px solid var(--line)}
+.seg label:last-child{border-right:0}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label:has(input:checked){background:var(--ink);color:var(--paper)}
+.seg label:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:-5px}
+.sets label{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--paper);border:2px solid var(--line);margin-bottom:-2px;cursor:pointer}
+.sets input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--accent);flex:none}
+.sets small{display:block;color:var(--muted);font-size:.9rem}
+.btn{font:inherit;font-weight:700;padding:12px 20px;border:2px solid var(--line);background:var(--ink);color:var(--paper);cursor:pointer}
+.btn.alt{background:var(--paper);color:var(--ink)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn:focus-visible,input:focus-visible,.link:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.link{background:none;border:0;font:inherit;color:var(--muted);text-decoration:underline;cursor:pointer;padding:4px 0}
+.status{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:.95rem}
+.status b{color:var(--ink)}
+.bar{height:10px;border:2px solid var(--line);background:var(--paper);margin:8px 0 0}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+.tile{position:relative;background:var(--paper);border:2px solid var(--line);box-shadow:6px 6px 0 var(--line);padding:22px 20px 26px;text-align:center;margin:24px 6px 26px 0}
+.tile .ask{color:var(--muted);font-size:.95rem;margin-bottom:6px}
+.tile .q{font-weight:700;line-height:1.15;overflow-wrap:anywhere}
+.tile .q.formula{font-size:clamp(2.4rem,11vw,3.4rem)}
+.tile .q.name{font-size:clamp(1.7rem,7vw,2.3rem)}
+.tile .count{position:absolute;top:8px;left:10px;font-size:.8rem;color:var(--muted)}
+sub,sup{font-size:.6em;line-height:0}
+.fields{display:flex;gap:10px}
+.fields .f{flex:1 1 auto;min-width:0}
+.fields .f.charge{flex:0 0 32%}
+.fields label{display:block;font-weight:700;font-size:.95rem;margin-bottom:4px}
+input[type=text]{width:100%;font:inherit;font-size:1.25rem;padding:10px 12px;border:2px solid var(--line);background:var(--field);color:var(--ink);border-radius:0}
+.fb{margin-top:16px;padding:14px 16px;border:2px solid currentColor}
+.fb.ok{color:var(--ok);background:var(--okbg)}
+.fb.bad{color:var(--bad);background:var(--badbg)}
+.fb.info{color:var(--ink);background:var(--paper)}
+.fb .ans{font-size:1.4rem;font-weight:700;color:var(--ink);margin:4px 0}
+.fb .note{color:var(--ink);font-size:.95rem;margin:4px 0 0}
+.score{font-size:clamp(3rem,14vw,4.5rem);font-weight:700;line-height:1;margin:8px 0}
+.missed{list-style:none;padding:0;margin:0;border-top:2px solid var(--line)}
+.missed li{display:flex;justify-content:space-between;gap:12px;padding:8px 2px;border-bottom:1px solid var(--grid)}
+.missed li span:last-child{font-weight:700}
+.hint{color:var(--muted);font-size:.9rem;margin-top:10px}
+@media (prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+</head>
+<body>
+<main>
+
+<section id="setup">
+  <h1>Polyatomic ion drill</h1>
+  <p class="lede">Anything you miss comes back a few cards later, and you have to type the right answer before moving on. A round ends when every ion is cleared. Keep running rounds until you get a perfect first-try score.</p>
+
+  <h2>Direction</h2>
+  <fieldset class="seg" id="modes">
+    <label><input type="radio" name="mode" value="n2f" checked> Name → formula</label>
+    <label><input type="radio" name="mode" value="f2n"> Formula → name</label>
+    <label><input type="radio" name="mode" value="mix"> Mixed</label>
+  </fieldset>
+
+  <h2>Ions to include</h2>
+  <div class="sets" id="sets"></div>
+
+  <div class="actions">
+    <button class="btn" id="startBtn">Start drilling</button>
+  </div>
+  <p class="hint">For formulas, type the formula and charge in separate boxes, like SO4 and 2-. Capitalization doesn't matter.</p>
+</section>
+
+<section id="drill" hidden>
+  <div class="status">
+    <span>Round <b id="roundNo">1</b></span>
+    <span><b id="cleared">0</b> of <b id="total">0</b> cleared</span>
+    <span>First try: <b id="ftCount">0</b></span>
+  </div>
+  <div class="bar"><i id="barFill"></i></div>
+
+  <div class="tile">
+    <div class="ask" id="ask">Write the formula</div>
+    <div class="q" id="q"></div>
+  </div>
+
+  <form id="form" autocomplete="off">
+    <div class="fields" id="fFields">
+      <div class="f"><label for="inF">Formula</label><input type="text" id="inF" autocapitalize="characters" spellcheck="false" placeholder="e.g. SO4"></div>
+      <div class="f charge"><label for="inC">Charge</label><input type="text" id="inC" spellcheck="false" placeholder="e.g. 2-"></div>
+    </div>
+    <div class="fields" id="nFields">
+      <div class="f"><label for="inN">Name</label><input type="text" id="inN" autocapitalize="none" spellcheck="false" placeholder="e.g. sulfate"></div>
+    </div>
+    <div class="actions">
+      <button class="btn" type="submit" id="checkBtn">Check</button>
+      <button class="btn alt" type="button" id="revealBtn">I don't know</button>
+    </div>
+  </form>
+
+  <div id="fb" class="fb" hidden></div>
+
+  <div class="actions"><button class="link" id="quitBtn">End round and change settings</button></div>
+</section>
+
+<section id="end" hidden>
+  <h1 id="endTitle">Round complete</h1>
+  <p class="lede" id="endMsg"></p>
+  <div class="score" id="endScore"></div>
+  <p class="lede">correct on the first try</p>
+  <div id="missedWrap">
+    <h2>Missed this round</h2>
+    <ul class="missed" id="missedList"></ul>
+  </div>
+  <div class="actions">
+    <button class="btn" id="againBtn">Run the full set again</button>
+    <button class="btn alt" id="missedBtn">Drill just the missed ones</button>
+    <button class="btn alt" id="settingsBtn">Change settings</button>
+  </div>
+</section>
+
+</main>
+<script>
+const SETS=[
+  {k:"class",label:"Your class list",desc:"The 23 ions you need to know",on:true},
+  {k:"extra",label:"Extra ions",desc:"bromate, iodate, nitrite's cousins, thiosulfate, oxalate and others not on your list",on:false}
+];
+const IONS=[
+  {n:"nitrate",f:"NO3",c:-1,s:"class"},
+  {n:"carbonate",f:"CO3",c:-2,s:"class"},
+  {n:"chlorate",f:"ClO3",c:-1,s:"class"},
+  {n:"sulfate",f:"SO4",c:-2,s:"class"},
+  {n:"phosphate",f:"PO4",c:-3,s:"class"},
+  {n:"bromate",f:"BrO3",c:-1,s:"extra",note:"Same pattern as chlorate, since Br is in chlorine's group."},
+  {n:"iodate",f:"IO3",c:-1,s:"extra",note:"Same pattern as chlorate, since I is in chlorine's group."},
+
+  {n:"nitrite",f:"NO2",c:-1,s:"class",note:"-ite means one fewer O than nitrate (NO₃⁻). Charge stays the same."},
+  {n:"sulfite",f:"SO3",c:-2,s:"class",note:"-ite means one fewer O than sulfate (SO₄²⁻). Charge stays the same."},
+  {n:"phosphite",f:"PO3",c:-3,s:"extra",note:"-ite means one fewer O than phosphate (PO₄³⁻). Charge stays the same."},
+  {n:"perchlorate",f:"ClO4",c:-1,s:"class",note:"per-…-ate means one more O than chlorate (ClO₃⁻)."},
+  {n:"chlorite",f:"ClO2",c:-1,s:"class",note:"-ite means one fewer O than chlorate (ClO₃⁻)."},
+  {n:"hypochlorite",f:"ClO",c:-1,s:"class",note:"hypo-…-ite means two fewer O than chlorate (ClO₃⁻)."},
+  {n:"perbromate",f:"BrO4",c:-1,s:"extra",note:"per-…-ate means one more O than bromate (BrO₃⁻)."},
+  {n:"bromite",f:"BrO2",c:-1,s:"extra",note:"-ite means one fewer O than bromate (BrO₃⁻)."},
+  {n:"hypobromite",f:"BrO",c:-1,s:"extra",note:"hypo-…-ite means two fewer O than bromate (BrO₃⁻)."},
+  {n:"periodate",f:"IO4",c:-1,s:"extra",note:"per-…-ate means one more O than iodate (IO₃⁻)."},
+  {n:"iodite",f:"IO2",c:-1,s:"extra",note:"-ite means one fewer O than iodate (IO₃⁻)."},
+  {n:"hypoiodite",f:"IO",c:-1,s:"extra",note:"hypo-…-ite means two fewer O than iodate (IO₃⁻)."},
+  {n:"thiosulfate",f:"S2O3",c:-2,s:"extra",note:"thio- means one O in sulfate is swapped for an S."},
+
+  {n:"bicarbonate",alt:["hydrogen carbonate"],f:"HCO3",c:-1,s:"class",note:"Carbonate (CO₃²⁻) plus H⁺, so the charge goes from 2− to 1−."},
+  {n:"hydrogen sulfate",alt:["bisulfate"],f:"HSO4",c:-1,s:"class",note:"Sulfate (SO₄²⁻) plus H⁺, so the charge goes from 2− to 1−."},
+  {n:"hydrogen sulfite",alt:["bisulfite"],f:"HSO3",c:-1,s:"extra",note:"Sulfite (SO₃²⁻) plus H⁺, so the charge goes from 2− to 1−."},
+  {n:"hydrogen phosphate",alt:["monohydrogen phosphate"],f:"HPO4",c:-2,s:"class",note:"Phosphate (PO₄³⁻) plus H⁺, so the charge goes from 3− to 2−."},
+  {n:"dihydrogen phosphate",f:"H2PO4",c:-1,s:"class",note:"Phosphate (PO₄³⁻) plus two H⁺, so the charge goes from 3− to 1−."},
+
+  {n:"ammonium",f:"NH4",c:1,s:"class",note:"The common positive one."},
+  {n:"hydronium",f:"H3O",c:1,s:"class",note:"Water plus H⁺."},
+  {n:"hydroxide",f:"OH",c:-1,s:"class"},
+  {n:"cyanide",f:"CN",c:-1,s:"class"},
+  {n:"thiocyanate",f:"SCN",c:-1,s:"extra",note:"Cyanate (OCN⁻) with the O swapped for S."},
+  {n:"acetate",f:"C2H3O2",c:-1,s:"class",fAlt:["CH3COO","CH3CO2"],note:"Also written CH₃COO⁻."},
+  {n:"permanganate",f:"MnO4",c:-1,s:"class"},
+  {n:"chromate",f:"CrO4",c:-2,s:"class"},
+  {n:"dichromate",f:"Cr2O7",c:-2,s:"class"},
+  {n:"peroxide",f:"O2",c:-2,s:"extra"},
+  {n:"oxalate",f:"C2O4",c:-2,s:"extra"},
+  {n:"mercury(I)",alt:["mercurous","mercury 1","mercury I"],f:"Hg2",c:2,s:"class",note:"A diatomic cation: two Hg⁺ bonded together."}
+].map((x,i)=>({...x,id:i}));
+
+const $=id=>document.getElementById(id);
+const SUBS="₀₁₂₃₄₅₆₇₈₉", SUPS="⁰¹²³⁴⁵⁶⁷⁸⁹";
+const fmt=(f,c)=>f.replace(/(\d+)/g,"<sub>$1</sub>")+"<sup>"+(Math.abs(c)===1?"":Math.abs(c))+(c<0?"−":"+")+"</sup>";
+const plainCharge=c=>(Math.abs(c)===1?"":Math.abs(c))+(c<0?"-":"+");
+const normF=s=>s.replace(/[₀-₉]/g,d=>SUBS.indexOf(d)).replace(/[\s_^]/g,"").toUpperCase();
+const normN=s=>s.toLowerCase().replace(/[\s\-()]/g,"");
+function normC(s){
+  s=s.replace(/⁺/g,"+").replace(/[⁻−–—]/g,"-").replace(/[⁰-⁹]/g,d=>SUPS.indexOf(d)).replace(/[\s^]/g,"");
+  let m=s.match(/^([+-])(\d*)$/)||s.match(/^(\d*)([+-])$/);
+  if(!m)return null;
+  const sign=/[+-]/.test(m[1])?m[1]:m[2];
+  const digits=/[+-]/.test(m[1])?m[2]:m[1];
+  const mag=digits?parseInt(digits,10):1;
+  if(mag===0)return null;
+  return sign==="-"?-mag:mag;
+}
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+
+let mode="n2f", baseItems=[], roundItems=[], queue=[], cur=null, dir="n2f", stage="answer", round=0, firstTry=new Set(), missed=new Set(), advanceTimer=null;
+
+// Setup UI
+$("sets").innerHTML=SETS.map(s=>{
+  const n=IONS.filter(x=>x.s===s.k).length;
+  return `<label><input type="checkbox" value="${s.k}"${s.on?" checked":""}><span><b>${s.label}</b> (${n})<small>${s.desc}</small></span></label>`;
+}).join("");
+function selectedItems(){
+  const keys=[...document.querySelectorAll("#sets input:checked")].map(i=>i.value);
+  return IONS.filter(x=>keys.includes(x.s));
+}
+function updateStart(){const n=selectedItems().length;$("startBtn").disabled=!n;$("startBtn").textContent=n?`Start drilling ${n} ions`:"Pick at least one group";}
+$("sets").addEventListener("change",updateStart);updateStart();
+document.querySelectorAll("input[name=mode]").forEach(r=>r.addEventListener("change",()=>{mode=r.value}));
+
+function show(id){["setup","drill","end"].forEach(s=>$(s).hidden=s!==id);window.scrollTo(0,0);}
+
+$("startBtn").onclick=()=>{mode=document.querySelector("input[name=mode]:checked").value;baseItems=selectedItems();round=0;startRound(baseItems);};
+
+function startRound(items){
+  round++;roundItems=items.slice();queue=shuffle(items.slice());firstTry=new Set();missed=new Set();
+  show("drill");next();
+}
+
+function next(){
+  clearTimeout(advanceTimer);
+  if(!queue.length){endRound();return;}
+  cur=queue.shift();
+  dir=mode==="mix"?(Math.random()<.5?"n2f":"f2n"):mode;
+  stage="answer";
+  render();
+}
+
+function render(){
+  const total=roundItems.length, cleared=total-queue.length-(cur?1:0);
+  $("roundNo").textContent=round;$("total").textContent=total;$("cleared").textContent=cleared;$("ftCount").textContent=firstTry.size;
+  $("barFill").style.width=(cleared/total*100)+"%";
+  const q=$("q");
+  if(dir==="n2f"){$("ask").textContent="Write the formula and charge";q.className="q name";q.textContent=cur.n;}
+  else{$("ask").textContent="Name this ion";q.className="q formula";q.innerHTML=fmt(cur.f,cur.c);}
+  $("fFields").hidden=dir!=="n2f";$("nFields").hidden=dir!=="f2n";
+  ["inF","inC","inN"].forEach(i=>{$(i).value="";$(i).disabled=false});
+  $("checkBtn").disabled=false;$("checkBtn").textContent="Check";
+  $("revealBtn").hidden=false;
+  $("fb").hidden=true;
+  focusFirst();
+}
+function focusFirst(){(dir==="n2f"?$("inF"):$("inN")).focus();}
+
+function formulaOk(v){return [cur.f,...(cur.fAlt||[])].map(normF).includes(v);}
+function nameOk(v){return [cur.n,...(cur.alt||[])].map(normN).includes(v);}
+
+function feedback(kind,html){const fb=$("fb");fb.className="fb "+kind;fb.innerHTML=html;fb.hidden=false;}
+function answerHtml(){
+  const main=dir==="n2f"?`${cur.n} is <span>${fmt(cur.f,cur.c)}</span>`:`${fmt(cur.f,cur.c)} is <span>${cur.n}</span>`;
+  const alts=dir==="f2n"&&cur.alt?`<p class="note">Also accepted: ${cur.alt.join(", ")}</p>`:"";
+  const typed=dir==="n2f"?`<p class="note">Type: ${cur.f} and ${plainCharge(cur.c)}</p>`:"";
+  return `<div class="ans">${main}</div>${typed}${alts}${cur.note?`<p class="note">${cur.note}</p>`:""}`;
+}
+
+// Returns true/false, or null if input incomplete
+function grade(){
+  if(dir==="n2f"){
+    const fRaw=$("inF").value.trim(), cRaw=$("inC").value.trim();
+    if(!fRaw){feedback("info","Enter a formula first.");$("inF").focus();return null;}
+    if(/[+\-−⁺⁻]/.test(fRaw)){feedback("info","Put the charge in the charge box, like 2- or +.");$("inC").focus();return null;}
+    if(!cRaw){feedback("info","Add the charge too, like 2- or +.");$("inC").focus();return null;}
+    const c=normC(cRaw);
+    if(c===null){feedback("info","Write the charge like 2-, 3-, - or +.");$("inC").focus();return null;}
+    return {ok:formulaOk(normF(fRaw))&&c===cur.c,fOk:formulaOk(normF(fRaw)),cOk:c===cur.c};
+  }else{
+    const nRaw=$("inN").value.trim();
+    if(!nRaw){feedback("info","Type the name first.");$("inN").focus();return null;}
+    return {ok:nameOk(normN(nRaw))};
+  }
+}
+
+function miss(reason){
+  missed.add(cur.id);
+  stage="retype";
+  feedback("bad",`<b>${reason}</b>${answerHtml()}<p class="note"><b>Type it correctly to continue.</b></p>`);
+  ["inF","inC","inN"].forEach(i=>$(i).value="");
+  $("revealBtn").hidden=true;
+  focusFirst();
+}
+
+function requeue(){
+  const pos=Math.min(queue.length,2+Math.floor(Math.random()*3));
+  queue.splice(pos,0,cur);
+}
+
+$("form").addEventListener("submit",e=>{
+  e.preventDefault();
+  if(stage==="done")return;
+  const r=grade();
+  if(r===null)return;
+  if(stage==="retype"){
+    if(r.ok){requeue();stage="done";feedback("ok","<b>Got it. This one will come back in a few cards.</b>");advanceTimer=setTimeout(next,900);}
+    else{feedback("bad",`<b>Not quite. Copy it exactly.</b>${answerHtml()}`);focusFirst();}
+    return;
+  }
+  if(r.ok){
+    if(!missed.has(cur.id))firstTry.add(cur.id);
+    stage="done";
+    ["inF","inC","inN"].forEach(i=>$(i).disabled=true);
+    $("checkBtn").disabled=true;
+    feedback("ok",`<b>Correct.</b>`);
+    advanceTimer=setTimeout(next,550);
+  }else{
+    let reason="Not quite.";
+    if(dir==="n2f"){if(r.fOk&&!r.cOk)reason="Right formula, wrong charge.";else if(!r.fOk&&r.cOk)reason="Right charge, wrong formula.";}
+    miss(reason);
+  }
+});
+$("revealBtn").onclick=()=>{if(stage==="answer")miss("Here's the answer.");};
+$("quitBtn").onclick=()=>{clearTimeout(advanceTimer);show("setup");};
+
+function endRound(){
+  const total=roundItems.length, ft=firstTry.size, perfect=ft===total;
+  const fullSet=roundItems.length===baseItems.length;
+  $("endScore").textContent=`${ft} / ${total}`;
+  if(perfect&&fullSet){$("endTitle").textContent="Perfect round";$("endMsg").textContent="Every ion right on the first try. Run it once more tomorrow to make sure it sticks.";}
+  else if(perfect){$("endTitle").textContent="Missed ones cleared";$("endMsg").textContent="Now run the full set again to prove you've got all of them.";}
+  else{$("endTitle").textContent=`Round ${round} done`;$("endMsg").textContent="Not perfect yet. Drill the misses, then run the full set until you get every one on the first try.";}
+  const miss=roundItems.filter(x=>missed.has(x.id));
+  $("missedWrap").hidden=!miss.length;
+  $("missedList").innerHTML=miss.map(x=>`<li><span>${x.n}</span><span>${fmt(x.f,x.c)}</span></li>`).join("");
+  $("missedBtn").hidden=!miss.length;
+  show("end");
+  $("againBtn").focus();
+}
+$("againBtn").onclick=()=>startRound(baseItems);
+$("missedBtn").onclick=()=>startRound(roundItems.filter(x=>missed.has(x.id)));
+$("settingsBtn").onclick=()=>show("setup");
+</script>
+</body>
+</html>
